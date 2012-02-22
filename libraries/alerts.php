@@ -295,9 +295,12 @@ class alerts
 			
 			foreach ($arr as $each_type)
 			{
-				foreach ($each_type as $item)
+				if (is_array($each_type))
 				{
-					$out .= $this->_wrap($item, $each_type);
+					foreach ($each_type as $item)
+					{
+						$out .= $this->_wrap($item, $each_type);
+					}
 				}
 			}
 		}
@@ -314,9 +317,12 @@ class alerts
 			}
 			else
 			{
-				foreach ($arr as $item)
+				if (is_array($arr))
 				{
-					$out .= $this->_wrap($item, $type);
+					foreach ($arr as $item)
+					{
+						$out .= $this->_wrap($item, $type);
+					}
 				}
 			}
 		}
