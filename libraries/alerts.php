@@ -214,7 +214,7 @@ class alerts
 	private function _set_item($type, $msg, $key = '')
 	{
 		// retrive the flashdata, add to the array, set it again
-		$arr = $this->session->flashdata($type);
+		$arr = $this->_ci->session->flashdata($type);
 		if ($arr == FALSE) { $arr = array(); }
 		if ($key == '')
 		{
@@ -224,7 +224,7 @@ class alerts
 		{
 			$arr[$key] = $msg;
 		}
-		$this->session->set_flashdata($arr);
+		$this->_ci->session->set_flashdata($arr);
 	}
 	
 	// --------------------------------------------------------------------------
@@ -243,9 +243,9 @@ class alerts
 		if ($type == '')
 		{
 			$arr = array(
-				'errors' => $this->session->flashdata('errors'),
-				'success' => $this->session->flashdata('success'),
-				'info' => $this->session->flashdata('info')
+				'errors' => $this->_ci->session->flashdata('errors'),
+				'success' => $this->_ci->session->flashdata('success'),
+				'info' => $this->_ci->session->flashdata('info')
 			);
 			return $arr;
 		}
@@ -255,12 +255,12 @@ class alerts
 			// return all messages for that type
 			if ($key == '')
 			{
-				return $this->session->flashdata($type);
+				return $this->_ci->session->flashdata($type);
 			}
 			// return just the message with that key
 			else
 			{
-				$arr = $this->session->flashdata($type);
+				$arr = $this->_ci->session->flashdata($type);
 				if (isset($arr[$key]))
 				{
 					return $arr[$key];
