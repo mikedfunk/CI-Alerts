@@ -299,8 +299,15 @@ class alerts
 				if (is_array($items))
 				{
 					$out .= config_item('before_all');
-					foreach ($items as $item)
+					foreach ($items as $key => $item)
 					{
+						if (!is_numeric($key) && $key != '')
+						{
+							$out .= config_item('key_before');
+							$out .= $key;
+							$out .= config_item('key_after');
+							
+						}
 						$out .= $this->_wrap($item, $type);
 					}
 					$out .= config_item('after_all');

@@ -18,6 +18,9 @@
 
 // --------------------------------------------------------------------------
 
+$config['key_before'] = '';
+$config['key_after'] = '';
+
 $config['before_all'] = '';
 $config['before_each'] = '';
 $config['before_error'] = '<div class="alert alert-error fade in"><a class="close" href="#">&times;</a>';
