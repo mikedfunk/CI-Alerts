@@ -215,7 +215,7 @@ class alerts
 	{
 		// retrive the flashdata, add to the array, set it again
 		$arr = $this->_ci->session->flashdata($type);
-		if ($arr == FALSE) { $arr = array(); }
+		if ($arr == FALSE || $arr == '') { $arr = array(); }
 		if ($key == '')
 		{
 			$arr[] = $msg;
@@ -243,7 +243,7 @@ class alerts
 		if ($type == '')
 		{
 			$arr = array(
-				'errors' => unserialize($this->_ci->session->flashdata('errors')),
+				'error' => unserialize($this->_ci->session->flashdata('error')),
 				'success' => unserialize($this->_ci->session->flashdata('success')),
 				'info' => unserialize($this->_ci->session->flashdata('info'))
 			);
