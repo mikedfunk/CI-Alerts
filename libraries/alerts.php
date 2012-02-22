@@ -197,7 +197,7 @@ class alerts
 	 */
 	public function display_all()
 	{
-		$this->_display_item();
+		return $this->_display_item();
 	}
 	
 	// --------------------------------------------------------------------------
@@ -224,7 +224,7 @@ class alerts
 		{
 			$arr[$key] = $msg;
 		}
-		$this->_ci->session->set_flashdata($arr);
+		$this->_ci->session->set_flashdata($type, serialize($arr));
 	}
 	
 	// --------------------------------------------------------------------------
@@ -243,9 +243,9 @@ class alerts
 		if ($type == '')
 		{
 			$arr = array(
-				'errors' => $this->_ci->session->flashdata('errors'),
-				'success' => $this->_ci->session->flashdata('success'),
-				'info' => $this->_ci->session->flashdata('info')
+				'errors' => unserialize($this->_ci->session->flashdata('errors')),
+				'success' => unserialize($this->_ci->session->flashdata('success')),
+				'info' => unserialize($this->_ci->session->flashdata('info'))
 			);
 			return $arr;
 		}
@@ -255,12 +255,12 @@ class alerts
 			// return all messages for that type
 			if ($key == '')
 			{
-				return $this->_ci->session->flashdata($type);
+				return unserialize($this->_ci->session->flashdata($type));
 			}
 			// return just the message with that key
 			else
 			{
-				$arr = $this->_ci->session->flashdata($type);
+				$arr = unserialize($this->_ci->session->flashdata($type));
 				if (isset($arr[$key]))
 				{
 					return $arr[$key];
@@ -291,38 +291,46 @@ class alerts
 		if ($type == '')
 		{
 			$arr = $this->_get_item();
+			
 			if ($arr == FALSE) { $arr = array(); }
 			
-			foreach ($arr as $each_type)
+			foreach ($arr as $type => $items)
 			{
-				if (is_array($each_type))
+				if (is_array($items))
 				{
-					foreach ($each_type as $item)
+					$out .= config_item('before_all');
+					foreach ($items as $item)
 					{
-						$out .= $this->_wrap($item, $each_type);
+						$out .= $this->_wrap($item, $type);
 					}
+					$out .= config_item('after_all');
 				}
 			}
 		}
 		// else just this type
 		else
-		{
+		{	
 			$arr = $this->_get_item($type);
+			
 			if ($arr == FALSE) { $arr = array(); }
 			
 			// if key is set, just return that key
 			if ($key != '')
 			{
+				$out .= config_item('before_all');
 				$out .= $this->_wrap($arr[$key], $type);
+				$out .= config_item('after_all');
 			}
 			else
 			{
 				if (is_array($arr))
 				{
+					$out .= config_item('before_all');
 					foreach ($arr as $item)
-					{
+					{	
 						$out .= $this->_wrap($item, $type);
 					}
+					$out .= config_item('after_all');
 				}
 			}
 		}
@@ -342,9 +350,9 @@ class alerts
 	 */
 	private function _wrap($msg, $type = '')
 	{
-		$this->config->load('alerts_config');
+		$this->_ci->config->load('alerts_config');
 		
-		$out = config_item('before_all');
+		$out = '';
 		$out .= config_item('before_each');
 		if ($type != '') 
 		{
@@ -355,7 +363,6 @@ class alerts
 			$out .= config_item('before_no_type'.$type);
 		}
 		$out .= $msg;
-		$out .= config_item('after_all');
 		$out .= config_item('after_each');
 		if ($type != '') 
 		{
