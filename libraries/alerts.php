@@ -285,6 +285,8 @@ class alerts
 	 */
 	private function _display_item($type = '', $key = '')
 	{
+		$this->_ci->config->load('alerts_config');
+		
 		$out = '';
 		
 		// if no type is passed, add all message data to output
