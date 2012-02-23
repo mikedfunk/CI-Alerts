@@ -11,7 +11,7 @@ I was looking at using flashdata for alerts, but it didn't seem to fit the bill.
     <?php endif; ?>
     // etc...
 
-CI Alerts aims to solve this problem. It allows you to add alerts of type success, error, info, or warning to flashdata and later display them. It adds the alerts to arrays for each one, so the success flashdata is an array with each success alert in it. You can display a specific alert by key (and type), all alerts of a certain type, or all alerts. The wrapping HTML is set in the config file and has separate html for each type. Since it's flashdata it only lasts one page reload by default, so keep that in mind.
+CI Alerts aims to solve this problem. It allows you to add alerts of type success, error, info, or warning to flashdata and later display them. It adds the alerts to arrays for each one, so the success flashdata is an array with each success alert in it. You can display all alerts of a certain type or all alerts. The wrapping HTML is set in the config file and has separate html for each type. Since it's flashdata it only lasts one page reload by default, so keep that in mind.
 
 Setup
 ----------------------------

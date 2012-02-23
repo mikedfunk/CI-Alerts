@@ -54,12 +54,11 @@ class alerts
 	 * 
 	 * @access public
 	 * @param string $msg
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	public function set_error($msg, $key = '')
+	public function set_error($msg)
 	{
-		return $this->_set_item('error', $msg, $key);
+		return $this->_set_item('error', $msg);
 	}
 	
 	// --------------------------------------------------------------------------
@@ -68,12 +67,11 @@ class alerts
 	 * get_error function.
 	 * 
 	 * @access public
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	public function get_error($key = '')
+	public function get_error()
 	{
-		return $this->_get_item('error', $key);
+		return $this->_get_item('error');
 	}
 	
 	// --------------------------------------------------------------------------
@@ -83,12 +81,11 @@ class alerts
 	 * 
 	 * @access public
 	 * @param string $msg
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	public function set_success($msg, $key = '')
+	public function set_success($msg)
 	{
-		return $this->_set_item('success', $msg, $key);
+		return $this->_set_item('success', $msg);
 	}
 	
 	// --------------------------------------------------------------------------
@@ -97,15 +94,12 @@ class alerts
 	 * get_success function.
 	 * 
 	 * @access public
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	public function get_success($key = '')
+	public function get_success()
 	{
-		return $this->_get_item('success', $key);
+		return $this->_get_item('success');
 	}
-	
-	// --------------------------------------------------------------------------
 	
 	// --------------------------------------------------------------------------
 	
@@ -114,12 +108,11 @@ class alerts
 	 * 
 	 * @access public
 	 * @param string $msg
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	public function set_warning($msg, $key = '')
+	public function set_warning($msg)
 	{
-		return $this->_set_item('warning', $msg, $key);
+		return $this->_set_item('warning', $msg);
 	}
 	
 	// --------------------------------------------------------------------------
@@ -128,12 +121,11 @@ class alerts
 	 * get_warning function.
 	 * 
 	 * @access public
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	public function get_warning($key = '')
+	public function get_warning()
 	{
-		return $this->_get_item('warning', $key);
+		return $this->_get_item('warning');
 	}
 	
 	// --------------------------------------------------------------------------
@@ -143,12 +135,11 @@ class alerts
 	 * 
 	 * @access public
 	 * @param string $msg
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	public function set_info($msg, $key = '')
+	public function set_info($msg)
 	{
-		return $this->_set_item('info', $msg, $key);
+		return $this->_set_item('info', $msg);
 	}
 	
 	// --------------------------------------------------------------------------
@@ -157,12 +148,11 @@ class alerts
 	 * get_info function.
 	 * 
 	 * @access public
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	public function get_info($key = '')
+	public function get_info()
 	{
-		return $this->_get_item('info', $key);
+		return $this->_get_item('info');
 	}
 	
 	// --------------------------------------------------------------------------
@@ -182,12 +172,11 @@ class alerts
 	 * display_error function.
 	 * 
 	 * @access public
-	 * @param string $key (default: '')
 	 * @return string
 	 */
-	public function display_error($key = '')
+	public function display_error()
 	{
-		return $this->_display_item('error', $key);
+		return $this->_display_item('error');
 	}
 	
 	// --------------------------------------------------------------------------
@@ -196,12 +185,11 @@ class alerts
 	 * display_success function.
 	 * 
 	 * @access public
-	 * @param string $key (default: '')
 	 * @return string
 	 */
-	public function display_success($key = '')
+	public function display_success()
 	{
-		return $this->_display_item('error', $key);
+		return $this->_display_item('success');
 	}
 	
 	// --------------------------------------------------------------------------
@@ -210,12 +198,11 @@ class alerts
 	 * display_info function.
 	 * 
 	 * @access public
-	 * @param string $key (default: '')
 	 * @return string
 	 */
-	public function display_info($key = '')
+	public function display_info()
 	{
-		return $this->_display_item('info', $key);
+		return $this->_display_item('info');
 	}
 	
 	// --------------------------------------------------------------------------
@@ -239,22 +226,14 @@ class alerts
 	 * @access private
 	 * @param mixed $type
 	 * @param mixed $msg
-	 * @param string $key (default: '')
 	 * @return bool
 	 */
-	private function _set_item($type, $msg, $key = '')
+	private function _set_item($type, $msg)
 	{
 		// retrive the flashdata, add to the array, set it again
 		$arr = $this->_ci->session->flashdata($type);
 		if ($arr == FALSE || $arr == '') { $arr = array(); }
-		if ($key == '')
-		{
-			$arr[] = $msg;
-		}
-		else
-		{
-			$arr[$key] = $msg;
-		}
+		$arr[] = $msg;
 		$this->_ci->session->set_flashdata($type, serialize($arr));
 	}
 	
@@ -265,10 +244,9 @@ class alerts
 	 * 
 	 * @access private
 	 * @param string $type (default: '')
-	 * @param string $key (default: '')
 	 * @return array
 	 */
-	private function _get_item($type = '', $key = '')
+	private function _get_item($type = '')
 	{
 		// if it's all alerts
 		if ($type == '')
@@ -284,24 +262,7 @@ class alerts
 		// else it's a specific type
 		else
 		{
-			// return all messages for that type
-			if ($key == '')
-			{
-				return unserialize($this->_ci->session->flashdata($type));
-			}
-			// return just the message with that key
-			else
-			{
-				$arr = unserialize($this->_ci->session->flashdata($type));
-				if (isset($arr[$key]))
-				{
-					return $arr[$key];
-				}
-				else
-				{
-					return FALSE;
-				}
-			}
+			return unserialize($this->_ci->session->flashdata($type));
 		}
 	}
 	
@@ -312,10 +273,9 @@ class alerts
 	 * 
 	 * @access private
 	 * @param string $type (default: '')
-	 * @param string $key (default: '')
 	 * @return string
 	 */
-	private function _display_item($type = '', $key = '')
+	private function _display_item($type = '')
 	{
 		$this->_ci->config->load('alerts_config');
 		
@@ -333,15 +293,8 @@ class alerts
 				if (is_array($items))
 				{
 					$out .= config_item('before_all');
-					foreach ($items as $key => $item)
+					foreach ($items as $item)
 					{
-						if (!is_numeric($key) && $key != '')
-						{
-							$out .= config_item('key_before');
-							$out .= $key;
-							$out .= config_item('key_after');
-							
-						}
 						$out .= $this->_wrap($item, $type);
 					}
 					$out .= config_item('after_all');
@@ -355,24 +308,14 @@ class alerts
 			
 			if ($arr == FALSE) { $arr = array(); }
 			
-			// if key is set, just return that key
-			if ($key != '')
+			if (is_array($arr))
 			{
 				$out .= config_item('before_all');
-				$out .= $this->_wrap($arr[$key], $type);
-				$out .= config_item('after_all');
-			}
-			else
-			{
-				if (is_array($arr))
-				{
-					$out .= config_item('before_all');
-					foreach ($arr as $item)
-					{	
-						$out .= $this->_wrap($item, $type);
-					}
-					$out .= config_item('after_all');
+				foreach ($arr as $item)
+				{	
+					$out .= $this->_wrap($item, $type);
 				}
+				$out .= config_item('after_all');
 			}
 		}
 		
