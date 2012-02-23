@@ -31,7 +31,7 @@ Set Success, Set Error, Set Info, Set Warning
 
     $this->alerts->set_success($value);
     
-Display Errors
+Display Alerts
 
     $this->alerts->display_all($optional_type);
 
