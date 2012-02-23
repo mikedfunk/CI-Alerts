@@ -4,10 +4,10 @@ CI (CodeIgniter) Alerts
 I was looking at using flashdata for alerts, but it didn't seem to fit the bill. What if I want to add multiple alerts and have them displayed when I go to the next page? What if I want to set the type of alert (success, error, etc.) so I can style it appropriately? What if I want to display two success alerts and one warning alert? I don't want to have a ton of code in each view like this, which will limit me to one alert of each type anyway:
 
     <?php if ($this->session->flashdata('success') !== FALSE): ?>
-    <div class="alert alert-success"><?=$this->sesion->flashdata('success')?></div><!--alert-->
+    <div class="alert alert-success"><?=$this->session->flashdata('success')?></div><!--alert-->
     <?php endif;
     if ($this->session->flashdata('error') !== FALSE): ?>
-    <div class="alert alert-error"><?=$this->sesion->flashdata('error')?></div><!--alert-->
+    <div class="alert alert-error"><?=$this->session->flashdata('error')?></div><!--alert-->
     <?php endif; ?>
     // etc...
 
