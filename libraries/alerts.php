@@ -107,6 +107,37 @@ class alerts
 	
 	// --------------------------------------------------------------------------
 	
+	// --------------------------------------------------------------------------
+	
+	/**
+	 * set_warning function.
+	 * 
+	 * @access public
+	 * @param string $msg
+	 * @param string $key (default: '')
+	 * @return bool
+	 */
+	public function set_warning($msg, $key = '')
+	{
+		return $this->_set_item('warning', $msg, $key);
+	}
+	
+	// --------------------------------------------------------------------------
+	
+	/**
+	 * get_warning function.
+	 * 
+	 * @access public
+	 * @param string $key (default: '')
+	 * @return bool
+	 */
+	public function get_warning($key = '')
+	{
+		return $this->_get_item('warning', $key);
+	}
+	
+	// --------------------------------------------------------------------------
+	
 	/**
 	 * set_info function.
 	 * 
@@ -245,6 +276,7 @@ class alerts
 			$arr = array(
 				'error' => unserialize($this->_ci->session->flashdata('error')),
 				'success' => unserialize($this->_ci->session->flashdata('success')),
+				'warning' => unserialize($this->_ci->session->flashdata('warning')),
 				'info' => unserialize($this->_ci->session->flashdata('info'))
 			);
 			return $arr;
