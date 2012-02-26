@@ -29,10 +29,10 @@ Load library
 
 Set Success, Set Error, Set Info, Set Warning
 
-    $this->alerts->set_success($value);
+    $this->alerts->set($type, $message);
     
 Display Alerts
 
-    $this->alerts->display_all($optional_type);
+    $this->alerts->display($optional_type);
 
 HTML wrappers are configurable in **alerts_config.php**. There are also methods for retrieving alerts in arrays for flexibility. Have fun!

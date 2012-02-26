@@ -2,7 +2,7 @@
 /**
  * alerts
  * 
- * Tools to alert and set/get flashdata from alerts
+ * Tools to alert and set/get flashdata from alerts.
  * 
  * @license		http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  * @author		Mike Funk
@@ -27,6 +27,8 @@ class alerts
 	
 	/**
 	 * _ci
+	 *
+	 * holds the codeigniter superobject.
 	 * 
 	 * @var mixed
 	 * @access private
@@ -45,190 +47,23 @@ class alerts
 	{
 		$this->_ci =& get_instance();
 		$this->_ci->load->library('session');
+		log_message('debug', 'Alerts: Library loaded.');
+		
 	}
 	
 	// --------------------------------------------------------------------------
 	
 	/**
-	 * set_error function.
+	 * set function.
+	 *
+	 * adds an item to the specified flasydata array.
 	 * 
 	 * @access public
-	 * @param string $msg
-	 * @return bool
-	 */
-	public function set_error($msg)
-	{
-		return $this->_set_item('error', $msg);
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * get_error function.
-	 * 
-	 * @access public
-	 * @return bool
-	 */
-	public function get_error()
-	{
-		return $this->_get_item('error');
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * set_success function.
-	 * 
-	 * @access public
-	 * @param string $msg
-	 * @return bool
-	 */
-	public function set_success($msg)
-	{
-		return $this->_set_item('success', $msg);
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * get_success function.
-	 * 
-	 * @access public
-	 * @return bool
-	 */
-	public function get_success()
-	{
-		return $this->_get_item('success');
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * set_warning function.
-	 * 
-	 * @access public
-	 * @param string $msg
-	 * @return bool
-	 */
-	public function set_warning($msg)
-	{
-		return $this->_set_item('warning', $msg);
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * get_warning function.
-	 * 
-	 * @access public
-	 * @return bool
-	 */
-	public function get_warning()
-	{
-		return $this->_get_item('warning');
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * set_info function.
-	 * 
-	 * @access public
-	 * @param string $msg
-	 * @return bool
-	 */
-	public function set_info($msg)
-	{
-		return $this->_set_item('info', $msg);
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * get_info function.
-	 * 
-	 * @access public
-	 * @return bool
-	 */
-	public function get_info()
-	{
-		return $this->_get_item('info');
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * get_all function.
-	 * 
-	 * @access public
-	 * @return array
-	 */
-	public function get_all()
-	{
-		return $this->_get_item();
-	}
-	
-	/**
-	 * display_error function.
-	 * 
-	 * @access public
-	 * @return string
-	 */
-	public function display_error()
-	{
-		return $this->_display_item('error');
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * display_success function.
-	 * 
-	 * @access public
-	 * @return string
-	 */
-	public function display_success()
-	{
-		return $this->_display_item('success');
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * display_info function.
-	 * 
-	 * @access public
-	 * @return string
-	 */
-	public function display_info()
-	{
-		return $this->_display_item('info');
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * display_all function.
-	 * 
-	 * @access public
-	 * @return string
-	 */
-	public function display_all()
-	{
-		return $this->_display_item();
-	}
-	
-	// --------------------------------------------------------------------------
-	
-	/**
-	 * _set_item function.
-	 * 
-	 * @access private
-	 * @param mixed $type
+	 * @param mixed $type (default: 'error')
 	 * @param mixed $msg
 	 * @return bool
 	 */
-	private function _set_item($type, $msg)
+	public function set($type = 'error', $msg)
 	{
 		// retrive the flashdata, add to the array, set it again
 		$arr = $this->_ci->session->flashdata($type);
@@ -240,13 +75,15 @@ class alerts
 	// --------------------------------------------------------------------------
 	
 	/**
-	 * _get_item function.
+	 * get function.
+	 *
+	 * gets all items or just items by the specified type as an array.
 	 * 
-	 * @access private
+	 * @access public
 	 * @param string $type (default: '')
 	 * @return array
 	 */
-	private function _get_item($type = '')
+	public function get($type = '')
 	{
 		// if it's all alerts
 		if ($type == '')
@@ -269,13 +106,15 @@ class alerts
 	// --------------------------------------------------------------------------
 	
 	/**
-	 * _display_item function.
+	 * display function.
+	 *
+	 * returns html wrapped items, either all or limited to a specific type.
 	 * 
-	 * @access private
+	 * @access public
 	 * @param string $type (default: '')
 	 * @return string
 	 */
-	private function _display_item($type = '')
+	public function display($type = '')
 	{
 		$this->_ci->config->load('alerts_config');
 		
@@ -284,7 +123,7 @@ class alerts
 		// if no type is passed, add all message data to output
 		if ($type == '')
 		{
-			$arr = $this->_get_item();
+			$arr = $this->get();
 			
 			if ($arr == FALSE) { $arr = array(); }
 			
@@ -304,7 +143,7 @@ class alerts
 		// else just this type
 		else
 		{	
-			$arr = $this->_get_item($type);
+			$arr = $this->get($type);
 			
 			if ($arr == FALSE) { $arr = array(); }
 			
@@ -318,7 +157,6 @@ class alerts
 				$out .= config_item('after_all');
 			}
 		}
-		
 		return $out;
 	}
 	
@@ -326,13 +164,15 @@ class alerts
 	
 	/**
 	 * _wrap function.
+	 *
+	 * wraps an item in it's configured html and returns the value.
 	 * 
 	 * @access private
 	 * @param string $msg
-	 * @param string $type (default: '')
-	 * @return void
+	 * @param string $type
+	 * @return string
 	 */
-	private function _wrap($msg, $type = '')
+	private function _wrap($msg, $type)
 	{
 		$this->_ci->config->load('alerts_config');
 		
