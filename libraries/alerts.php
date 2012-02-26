@@ -117,6 +117,7 @@ class alerts
 	public function display($type = '')
 	{
 		$this->_ci->config->load('alerts_config');
+		log_message('debug', 'Alerts: config loaded.');
 		
 		$out = '';
 		
