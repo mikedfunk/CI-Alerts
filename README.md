@@ -36,4 +36,4 @@ Display Alerts
 
     $this->alerts->display($optional_type);
 
-HTML wrappers are configurable in **alerts_config.php**. There are also methods for retrieving alerts in arrays for flexibility. Have fun!
+HTML wrappers are configurable in **config/alerts.php**. There are also methods for retrieving alerts in arrays for flexibility. Have fun!
