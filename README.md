@@ -16,7 +16,7 @@ CI Alerts aims to solve this problem. It allows you to add alerts of type succes
 Setup
 ----------------------------
 
-1. Clone this into **application/third_party/alerts**
+1. Clone this into **application/third_party/alerts** or add it as a submodule
 2. Add this to the ```$autoload['packages']``` array in **application/config/autoload.php**:  ```APPPATH.'third_party/ci_alerts'``` or do ```$this->load->add_package_path(APPPATH.'third_party/ci_alerts');```
 4. Copy ***config/alerts_config.php*** file to ***application/config/alerts.php*** **(NOTE: Must be renamed to match library name!)**
 3. Edit **application/config/alerts.php** with whatever html you want to use to display alerts
