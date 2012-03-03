@@ -1,15 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * alerts_config
+ * ci_alerts
  * 
- * The HTML for alerts
+ * The config file containing HTML for ci_alerts
  * 
  * @license		http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  * @author		Mike Funk
  * @link		http://mikefunk.com
  * @email		mike@mikefunk.com
  * 
- * @file		alerts_config.php
+ * @file		ci_alerts.php
  * @version		1.0
  * @date		02/22/2012
  * 
@@ -34,5 +34,5 @@ $config['after_warning'] = '';
 $config['after_info'] = '';
 $config['after_no_type'] = '';
 
-/* End of file alerts_config.php */
-/* Location: ./ci_authentication/config/alerts_config.php */
+/* End of file ci_alerts.php */
+/* Location: ./ci_authentication/config/ci_alerts.php */
