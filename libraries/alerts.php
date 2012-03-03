@@ -1,15 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * alerts
+ * ci_alerts
  * 
- * Tools to alert and set/get flashdata from alerts.
+ * Tools to alert and set/get flashdata from ci_alerts.
  * 
  * @license		http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  * @author		Mike Funk
  * @link		http://mikefunk.com
  * @email		mike@mikefunk.com
  * 
- * @file		alerts.php
+ * @file		ci_alerts.php
  * @version		1.0
  * @date		02/22/2012
  * 
@@ -19,9 +19,9 @@
 // --------------------------------------------------------------------------
 
 /**
- * alerts class.
+ * ci_alerts class.
  */
-class alerts
+class ci_alerts
 {
 	// --------------------------------------------------------------------------
 	
@@ -47,7 +47,7 @@ class alerts
 	{
 		$this->_ci =& get_instance();
 		$this->_ci->load->library('session');
-		log_message('debug', 'Alerts: Library loaded.');
+		log_message('debug', 'CI Alerts: Library loaded.');
 		
 	}
 	
@@ -171,9 +171,7 @@ class alerts
 	 * @return string
 	 */
 	private function _wrap($msg, $type)
-	{
-		$this->_ci->config->load('alerts_config');
-		
+	{	
 		$out = '';
 		$out .= config_item('before_each');
 		if ($type != '') 
@@ -199,5 +197,5 @@ class alerts
 	
 	// --------------------------------------------------------------------------
 }
-/* End of file alerts.php */
-/* Location: ./ci_authentication/libraries/alerts.php */
+/* End of file ci_alerts.php */
+/* Location: ./ci_authentication/libraries/ci_alerts.php */
