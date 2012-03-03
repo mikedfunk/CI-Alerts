@@ -24,7 +24,7 @@ Usage
 
 Load Spark 
 
-    ```$this->load->spark('ci_alerts/1.1.1')```
+    ```$this->load->spark('ci_alerts/1.1.2')```
 
 Set Success, Set Error, Set Info, Set Warning
 
