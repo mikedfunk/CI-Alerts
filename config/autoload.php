@@ -10,7 +10,7 @@
  * @email		mike@mikefunk.com
  * 
  * @file		autoload.php
- * @version		1.1.3
+ * @version		1.1.4
  * @date		03/04/2012
  * 
  * Copyright (c) 2012
@@ -18,8 +18,8 @@
 
 // --------------------------------------------------------------------------
 
-$autoload['library'] = array('ci_alerts');
-$autoload['config'] = array('ci_alerts');
+$autoload['libraries'] = array('ci_alerts');
+// $autoload['config'] = array('ci_alerts');
 
 // --------------------------------------------------------------------------
 
