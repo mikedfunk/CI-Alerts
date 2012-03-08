@@ -10,7 +10,7 @@
  * @email		mike@mikefunk.com
  * 
  * @file		ci_alerts.php
- * @version		1.1.4
+ * @version		1.1.5
  * @date		02/22/2012
  * 
  * Copyright (c) 2012

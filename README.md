@@ -24,7 +24,7 @@ Usage
 
 Load Spark 
 
-    ```$this->load->spark('ci_alerts/1.1.4')```
+    ```$this->load->spark('ci_alerts/1.1.5')```
 
 Set Success, Set Error, Set Info, Set Warning
 
@@ -35,3 +35,14 @@ Display Alerts
     $this->ci_alerts->display($optional_type);
 
 HTML wrappers are configurable in **config/ci_alerts.php**. There are also methods for retrieving alerts in arrays for flexibility. Have fun!
+
+
+----------------------------
+
+Changelog
+----------------------------
+
+**1.1.5**
+
+* Fixed bug with serialization of alert categories. Removed all serialization and unserialization as this is handled by CodeIgniter.
+* Removed default alert type. It was impossible to fall back on anyway because it is the first param and the second param is required.

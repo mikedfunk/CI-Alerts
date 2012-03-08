@@ -10,7 +10,7 @@
  * @email		mike@mikefunk.com
  * 
  * @file		ci_alerts.php
- * @version		1.1.4
+ * @version		1.1.5
  * @date		02/22/2012
  * 
  * Copyright (c) 2012
@@ -61,17 +61,17 @@ class ci_alerts
 	 * adds an item to the specified flasydata array.
 	 * 
 	 * @access public
-	 * @param mixed $type (default: 'error')
-	 * @param mixed $msg
+	 * @param string $type
+	 * @param string $msg
 	 * @return bool
 	 */
-	public function set($type = 'error', $msg)
+	public function set($type, $msg)
 	{
 		// retrive the flashdata, add to the array, set it again
 		$arr = $this->_ci->session->flashdata($type);
 		if ($arr == FALSE || $arr == '') { $arr = array(); }
 		$arr[] = $msg;
-		$this->_ci->session->set_flashdata($type, serialize($arr));
+		$this->_ci->session->set_flashdata($type, $arr);
 	}
 	
 	// --------------------------------------------------------------------------
@@ -91,17 +91,17 @@ class ci_alerts
 		if ($type == '')
 		{
 			$arr = array(
-				'error' => unserialize($this->_ci->session->flashdata('error')),
-				'success' => unserialize($this->_ci->session->flashdata('success')),
-				'warning' => unserialize($this->_ci->session->flashdata('warning')),
-				'info' => unserialize($this->_ci->session->flashdata('info'))
+				'error' => $this->_ci->session->flashdata('error'),
+				'success' => $this->_ci->session->flashdata('success'),
+				'warning' => $this->_ci->session->flashdata('warning'),
+				'info' => $this->_ci->session->flashdata('info')
 			);
 			return $arr;
 		}
 		// else it's a specific type
 		else
 		{
-			return unserialize($this->_ci->session->flashdata($type));
+			return $this->_ci->session->flashdata($type);
 		}
 	}
 	
