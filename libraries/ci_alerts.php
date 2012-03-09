@@ -10,8 +10,8 @@
  * @email		mike@mikefunk.com
  * 
  * @file		ci_alerts.php
- * @version		1.1.5
- * @date		02/22/2012
+ * @version		1.1.6
+ * @date		03/09/2012
  * 
  * Copyright (c) 2012
  */
@@ -70,6 +70,10 @@ class ci_alerts
 		// retrive the flashdata, add to the array, set it again
 		$arr = $this->_ci->session->flashdata($type);
 		if ($arr == FALSE || $arr == '') { $arr = array(); }
+		
+		// remove duplicates if configured to do so
+		if (config_item('remove_duplicates')) { $arr = array_unique($arr); }
+		
 		$arr[] = $msg;
 		$this->_ci->session->set_flashdata($type, $arr);
 	}

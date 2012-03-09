@@ -10,14 +10,18 @@
  * @email		mike@mikefunk.com
  * 
  * @file		ci_alerts.php
- * @version		1.1.5
- * @date		02/22/2012
+ * @version		1.1.6
+ * @date		03/09/2012
  * 
  * Copyright (c) 2012
  */
 
 // --------------------------------------------------------------------------
-
+/**
+ * alert html
+ * 
+ * The html wrapping around alerts
+ */
 $config['before_all'] = '';
 $config['before_each'] = '';
 $config['before_error'] = '<div class="alert alert-error fade in"><a class="close" href="#">&times;</a>';
@@ -33,6 +37,16 @@ $config['after_success'] = '';
 $config['after_warning'] = '';
 $config['after_info'] = '';
 $config['after_no_type'] = '';
+
+// --------------------------------------------------------------------------
+/**
+ * remove_duplicates
+ * 
+ * Whether to remove duplicate alerts
+ */
+$config['remove_duplicates'] = TRUE;
+
+// --------------------------------------------------------------------------
 
 /* End of file ci_alerts.php */
 /* Location: ./ci_authentication/config/ci_alerts.php */
