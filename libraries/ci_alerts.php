@@ -48,9 +48,6 @@ class ci_alerts
 		$this->_ci =& get_instance();
 		$this->_ci->load->library('session');
 		log_message('debug', 'CI Alerts: Library loaded.');
-		
-		$this->_ci->config->load('ci_alerts');
-		log_message('debug', 'CI Alerts: Config loaded.');
 	}
 	
 	// --------------------------------------------------------------------------
