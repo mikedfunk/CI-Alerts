@@ -22,9 +22,9 @@
  */
 $config['before_all'] = '';
 $config['before_each'] = '';
-$config['before_error'] = '<div class="alert alert-error fade in"><a class="close" href="#">&times;</a>';
-$config['before_success'] = '<div class="alert alert-success fade in"><a class="close" href="#">&times;</a>';
-$config['before_warning'] = '<div class="alert alert-warning fade in"><a class="close" href="#">&times;</a>';
+$config['before_error'] = '<div class="alert alert-error fade in"><a class="close" href="#" data-dismiss="alert">&times;</a>';
+$config['before_success'] = '<div class="alert alert-success fade in"><a class="close" href="#" data-dismiss="alert">&times;</a>';
+$config['before_warning'] = '<div class="alert alert-warning fade in"><a class="close" href="#" data-dismiss="alert">&times;</a>';
 $config['before_info'] = 
 $config['before_no_type'] = '<div class="alert alert-info fade in"><a class="close" href="#">&times;</a>';
 
