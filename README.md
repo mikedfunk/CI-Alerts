@@ -47,6 +47,7 @@ Changelog
 * Added config value on whether to remove duplicate alerts
 * Added removing of duplicate alerts in ```set()``` method
 * Autoload ```config/ci_alerts.php```
+* Added data-dismiss to alert X links in ```config/ci_alerts.php``` to allow closing
 
 **1.1.5**
 
