@@ -24,7 +24,7 @@ Usage
 
 Load Spark 
 
-    ```$this->load->spark('ci_alerts/1.1.6')```
+    ```$this->load->spark('ci_alerts/1.1.7')```
 
 Set Success, Set Error, Set Info, Set Warning
 
@@ -42,10 +42,16 @@ HTML wrappers are configurable in **config/ci_alerts.php**. There are also metho
 Changelog
 ----------------------------
 
+**1.1.7**
+
+* [donnykuria](https://github.com/donnykurnia) fixed bug which prevented multiple successive sets of the same type of alert before displaying.
+
 **1.1.6**
 
-* Added config value on whether to remove duplicate alerts.
-* Added removing of duplicate alerts in ```set()``` method.
+* Added config value on whether to remove duplicate alerts
+* Added removing of duplicate alerts in ```set()``` method
+* Autoload ```config/ci_alerts.php```
+* Added data-dismiss to alert X links in ```config/ci_alerts.php``` to allow closing
 
 **1.1.5**
 

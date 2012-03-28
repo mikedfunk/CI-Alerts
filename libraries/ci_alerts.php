@@ -10,10 +10,8 @@
  * @email		mike@mikefunk.com
  * 
  * @file		ci_alerts.php
- * @version		1.1.6
- * @date		03/09/2012
- * 
- * Copyright (c) 2012
+ * @version		1.1.7
+ * @date		03/28/2012
  */
 
 // --------------------------------------------------------------------------
@@ -48,9 +46,6 @@ class ci_alerts
 		$this->_ci =& get_instance();
 		$this->_ci->load->library('session');
 		log_message('debug', 'CI Alerts: Library loaded.');
-		
-		$this->_ci->config->load('ci_alerts');
-		log_message('debug', 'CI Alerts: Config loaded.');
 	}
 	
 	// --------------------------------------------------------------------------
@@ -68,7 +63,7 @@ class ci_alerts
 	public function set($type, $msg)
 	{
 		// retrive the flashdata, add to the array, set it again
-		$arr = $this->_ci->session->flashdata($type);
+    $arr = $this->_ci->session->userdata($this->_ci->session->flashdata_key.':new:'.$type);
 		if ($arr == FALSE || $arr == '') { $arr = array(); }
 		
 		// remove duplicates if configured to do so
