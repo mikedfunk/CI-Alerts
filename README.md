@@ -45,6 +45,7 @@ Changelog
 **1.1.7**
 
 * [donnykuria](https://github.com/donnykurnia) fixed bug which prevented multiple successive sets of the same type of alert before displaying.
+* [rmwebs](https://github.com/rmwebs) fixed php error in config file.
 
 **1.1.6**
 
